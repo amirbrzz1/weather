@@ -6,12 +6,11 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "i18n": {
-      "root": "/",
-      "sourceLocale": "en-US",
-      "locales": { "fa": "src/locale/messages.fa.xlf" }
-    },
     "weather-app": {
+      "i18n": {
+        "sourceLocale": "en-US",
+        "locales": { "fa": "src/locale/messages.fa.xlf" }
+      },
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -25,7 +24,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "localize": true,
+            "localize": ["en-US"],
             "outputPath": "dist/weather-app",
             "index": "src/index.html",
             "main": "src/main.ts",
