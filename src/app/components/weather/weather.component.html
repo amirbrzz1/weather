@@ -1,0 +1,48 @@
+<ng-container *ngIf="loading === loadingEnum.Success && weatherData">
+  <div class="card highlight-card card-small">
+
+    <img class="weather-icon" [attr.src]="'https://openweathermap.org/img/wn/'+ weatherData.weather[0].icon +'@2x.png'">
+
+    <span class="weather-info">
+      <h2>Location: {{ weatherData.name }}, {{ weatherData.sys.country }}</h2>
+    </span>
+
+
+
+  </div>
+  <span class="weather-info">
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" i18n-placeholder="@@CityName" placeholder="city name" #city>
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" i18n="@@Search" (click)="search(city.value)">Serach</button>
+      </div>
+    </div>
+  </span>
+  <div class="card-container">
+    <a class="card">
+      <span>
+        <ng-container i18n="@@Temp">Temp : </ng-container>
+        {{ weatherData.main.temp }}°C</span>
+    </a>
+    <a class="card">
+      <ng-container i18n="@@Description">description : </ng-container>
+      <span>{{ weatherData.weather[0].description }}</span>
+    </a>
+    <a class="card">
+      <ng-container i18n="@@Humidity">Humidity : </ng-container>
+      <span>{{ weatherData.main.humidity }}%</span>
+    </a>
+    <a class="card" >
+      <ng-container i18n="@@WindSpeed">Wind Speed : </ng-container>
+      <span>{{ weatherData.wind.speed }} m/s</span>
+    </a>
+
+  </div>
+</ng-container>
+<ng-container *ngIf="loading !== loadingEnum.Success || !weatherData">
+  <div class="terminal">
+    <ng-container *ngIf="loading === loadingEnum.Error">
+      <pre>{{error?.error?.message}}</pre>
+    </ng-container>
+  </div>
+</ng-container>
